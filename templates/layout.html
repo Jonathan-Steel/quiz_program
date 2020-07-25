@@ -18,17 +18,23 @@
 <body>
     <!-- Boostrap Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/home">Quiz Program</a>
+        <a class="navbar-brand" href="{{url_for('home')}}">Quiz Program</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
+                <a class="nav-link" href="{{url_for('about')}}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('login')}}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('register')}}">Register</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,6 +54,24 @@
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8">
+
+                <!-- Displays any flash messages. Categories are classes that our messages use. -->
+                {% with messages = get_flashed_messages(with_categories=True) %}
+
+                    <!-- If there are any messages: -->
+                    {% if messages %}
+
+                        <!-- Takes the category (class) and message for every message. -->
+                        {% for category, message in messages %}
+
+                            <!-- Creates a div using the class (category) -->
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
                 <!-- Inserts content from other HTML files -->
                 {% block content %}{% endblock %}
             </div>
