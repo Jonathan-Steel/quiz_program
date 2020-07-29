@@ -1,7 +1,18 @@
-from quiz_program import db
+# Useful stuff from __init__.py
+from quiz_program import db, login_manager
+
+# Used for dates
 from datetime import datetime
 
-class User(db.Model):
+# A class which provides helpful functions for the login module (such as is_authenticated())
+from flask_login import UserMixin
+
+# Allows our login manager to load users by their user_id
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
