@@ -10,10 +10,19 @@ from quiz_program import app, db, bcrypt
 from quiz_program.models import User, Post
 
 # Importing the necessary forms
-from quiz_program.forms import RegistrationForm, LoginForm
+from quiz_program.forms import RegistrationForm, LoginForm, UpdateAccountForm
 
 # Importing useful stuff from the login package
 from flask_login import login_user, current_user, logout_user, login_required
+
+# Secrets module for creating random hex digits
+import secrets
+
+# OS module
+import os
+
+# Image adjustment module
+from PIL import Image
 
 # Creating the Home Page
 # The following links redirect the user to the home.html file
@@ -103,8 +112,67 @@ def logout():
     # Returns them to the home page
     return redirect(url_for('home'))
 
+# Saving the users picture to file system
+def save_picture(form_picture):
+
+    # Random Hex for filename
+    random_hex = secrets.token_hex(8)
+
+    # Splits filename from its extension and discards the filename
+    _, f_ext = os.path.splitext(form_picture.filename)
+
+    # Creates filename and extension
+    picture_fn = random_hex + f_ext
+
+    # Creates the path to the image
+    picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
+
+    # Adjusts the size of the image to 125x125 to save space
+    output_size = (125, 125)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+
+    # Saves the picture to the filesystem
+    i.save(picture_path)
+
+    return picture_fn
+
 # Account Page (Decorator means that user needs to be logged in to access route)
-@app.route("/account")
+@app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
-    return render_template('account.html', title='Account')
+
+    form = UpdateAccountForm()
+
+    if form.validate_on_submit():
+
+        # If the user has changed their profile picture
+        if form.picture.data:
+
+            # Get the picture filename
+            picture_file = save_picture(form.picture.data)
+
+            # Update the database
+            current_user.image_file = picture_file
+
+        # Updating information in the SQL database when submitting form information.
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+
+        db.session.commit()
+
+        flash('Your account has been updated!', 'success')
+
+        return redirect(url_for('account'))
+
+    elif request.method == 'GET':
+
+        # Populates the form with current users data when loading the page.
+
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+
+    # References the user's image file stored in the static directory.
+    image_file = url_for('static', filename = 'profile_pics/' + current_user.image_file)
+
+    return render_template('account.html', title='Account', image_file=image_file, form=form)
