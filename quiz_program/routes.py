@@ -7,7 +7,7 @@ from flask import render_template, url_for, flash, redirect, request
 from quiz_program import app, db, bcrypt
 
 # Importing the database models (tables)
-from quiz_program.models import User, Post
+from quiz_program.models import User, Question, Quiz, Chapter, Textbook
 
 # Importing the necessary forms
 from quiz_program.forms import RegistrationForm, LoginForm, UpdateAccountForm
