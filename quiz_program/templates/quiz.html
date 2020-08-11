@@ -1,0 +1,16 @@
+<!-- Link to template page -->
+{% extends "layout.html" %}
+
+<!-- Inserts this block of code into the body of the template -->
+{% block content %}
+    <script></script>
+    <article>
+        <div class="metadata">
+            <a href="#" class="textbook">{{ quiz.chapter.textbook.title }}</a>
+        </div>
+        <h1 id="quiz-title">{{ quiz.title }}</h1>
+        <div class="flashcard">
+            <h2>{{questions[2].term}}</h2>
+        </div>
+    </article>
+{% endblock content %}

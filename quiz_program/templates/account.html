@@ -3,7 +3,7 @@
 
 <!-- Inserts this block of code into the body of the template -->
 {% block content %}
-    <div class="media">
+    <div class="media-box">
         <img src="{{ image_file }}" alt="profile picture" class="rounded-circle">
         <div class="media-body">
             <h2>{{ current_user.username }}</h2>
@@ -71,7 +71,7 @@
 
         <!-- SUBMIT -->
         <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
+            {{ form.submit(class="submit-button") }}
         </div>
     </form>
 {% endblock content %}

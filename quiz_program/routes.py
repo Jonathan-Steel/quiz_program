@@ -75,7 +75,7 @@ def login():
 
     # If user is already logged in return them to the home page.
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('quizzes'))
 
     form = LoginForm()
 
@@ -95,7 +95,7 @@ def login():
             next_page = request.args.get('next')
 
             # Ternary return for next page system.
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+            return redirect(next_page) if next_page else redirect(url_for('quizzes'))
 
         else:
             flash('Login unsuccessful. Please check username and password.', 'danger')
@@ -176,3 +176,21 @@ def account():
     image_file = url_for('static', filename = 'profile_pics/' + current_user.image_file)
 
     return render_template('account.html', title='Account', image_file=image_file, form=form)
+
+# Quizzes Page
+@app.route("/quizzes")
+@login_required
+def quizzes():
+    quizzes = Quiz.query.all()
+    quiz_lengths = []
+    for quiz in quizzes:
+        quiz_lengths.append(len(list(quiz.questions)))
+    return render_template('quizzes.html', title='Quizzes', quizzes=quizzes, quiz_lengths=quiz_lengths)
+
+# Quizzes Page
+@app.route("/quiz/<int:quiz_id>")
+@login_required
+def quiz(quiz_id):
+    quiz = Quiz.query.get_or_404(quiz_id)
+    questions = Question.query.filter_by(quiz_id=quiz_id)
+    return render_template('quiz.html', title=quiz.title, quiz=quiz, questions=questions)

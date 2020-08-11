@@ -1,0 +1,361 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Navbar */
+
+li, a, button {
+    font-size: 1em;
+    text-decoration: none;
+}
+
+.nav__links a {
+    color: #edf0f1;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 2em 10%;
+    background-color: #2D388A;
+}
+
+.logo {
+    height: 2em;
+    width: auto;
+    cursor: pointer;
+    margin-right: auto;
+}
+
+.nav__links {
+    list-style: none;
+}
+
+.nav__links li {
+    display: inline-block;
+    padding: 0em 1.25em;
+}
+
+.nav__links li a {
+    transition: all 0.3s ease 0s;
+}   
+
+.nav__links li a:hover {
+    color: #FFE66D;
+}
+
+button {
+    padding: 0.5em 1.5em;
+    background-color: rgba(255, 230, 109, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    color: black;
+    margin-left: 1.25em;
+}
+
+button:hover {
+    background-color: rgba(255, 230, 109, 0.8);
+}
+
+/* Jumbotron */
+
+.jumbotron {
+    height: 48rem;
+    background-image: url('/assets/jumbotron.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin: 0;
+}
+
+.jumbotron h1 {
+    font-family: 'Chilanka', Helvetica, sans-serif;
+    font-size: 10em;
+}
+
+/* Subotron */
+
+.subotron {
+    background-color: #2D388A;
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 2em 0em;
+}
+
+.subotron h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2em;
+    margin: 0;
+}
+
+/* Container Stuff */
+
+.container {
+    padding: 1em 25em;
+}
+
+section {
+    margin: 10em 0;
+}
+
+.container h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 3em;
+    padding: 1em 0 0 0;
+}
+
+.container h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.5em;
+    padding: 1em 0 0 0;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+/* Quotes */
+
+blockquote {
+    font-family: 'Roboto Slab', serif;
+    font-size: 3em;
+}
+
+blockquote span {
+    font-weight: bold;
+    color: #2D388A;
+}
+
+/* Sign Up Part */
+
+#register h2 {
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    background-color: #FFE66D;
+    border-radius: 1em;
+    text-align: center;
+    padding: 1em;
+    width: 15em;
+}
+
+.button:hover {
+    background-color: #fff0a7;
+}
+
+.button a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: black;
+}
+
+/* Forms */
+fieldset {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5em;
+    padding: 1em;
+    border: 2px solid #2D388A;
+    border-radius: 0.25em;
+}
+
+legend {
+    padding: 1.5em;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+label {
+    display: block;
+    padding: 0.5em;
+    font-family: 'Roboto Slab', serif;
+}
+
+input {
+    display: block;
+    border-radius: 0.25em;
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1em;
+    border: 1px solid #2D388A;
+}
+
+.submit-button {
+    border: none;
+    background-color: #FFE66D;
+    color: black;
+    padding: 0.5em;
+    cursor: pointer;
+    margin: 1em 0;
+    width: auto;
+    font-size: 1.5em;
+}
+
+.submit-button:hover {
+    background-color: #fff0a7;
+}
+
+.remember-me-label {
+    display: inline;
+}
+
+.remember-me-btn {
+    display: inline;
+    width: auto;
+}
+
+small a {
+    color: #2D388A;
+    font-weight: bold;
+}
+
+/* Profile Picture */
+
+.media-box {
+    width: 100%;
+}
+
+.rounded-circle {
+    border-radius: 100%;
+    margin: 0;
+}
+
+.media-body {
+    display: block;
+}
+
+.media-body h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Quiz Box */
+.quiz {
+    border-radius: 0.25em;
+    background-color: rgb(250, 250, 250);
+    margin: 1em 0;
+    padding: 1em;
+}
+
+.quiz:hover {
+    border-bottom: 10px solid #fff0a7;
+}
+
+.quiz h2 {
+    color: black;
+    padding: 0;
+    font-family: 'Roboto Slab', serif;
+}
+
+.quiz .terms {
+    font-size: 1.25em;
+    font-family: 'Roboto Slab', serif;
+    color: rgb(100, 100, 100);
+}
+
+.quiz a {
+    text-decoration: none;
+    color: black;
+}
+
+.metadata {
+    margin: 1em 0;
+}
+
+.textbook {
+    font-size: 0.9em;
+    padding: 0.5em;
+    background-color: #FFE66D;
+    border-radius: 0.25em;
+    color: black;
+    font-weight: bold;
+    margin: 0.25em 0;
+}
+
+.textbook:hover {
+    background-color: #fff0a7;
+}
+
+.chapter {
+    font-size: 0.95em;
+    padding: 0.5em;
+    background-color: #2D388A;
+    border-radius: 0.25em;
+    color: white;
+    font-weight: bold;
+    margin: 0.25em 0;
+}
+
+.chapter:hover {
+    background-color: #3946ad;
+}
+
+/* Actual Quiz */
+#quiz-title {
+    padding-top: 0;
+}
+
+.flashcard {
+    width: 100%;
+    /* text-align: center; */
+    margin: 1em;
+    height: 40em;
+    background-color: rgb(246, 246, 246);
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Footer */
+
+footer {
+    background-color: #2D388A;
+    color: white;
+    margin: 0;
+    height: 5em;
+    padding: 5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 0.75em;
+}
+
+.icons img {
+    height: 30px;
+    width: auto;
+    margin: 0 0.5em;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 900px) {
+    .jumbotron h1 {
+        font-size: 5em;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        padding: 1em 2em
+    }
+}

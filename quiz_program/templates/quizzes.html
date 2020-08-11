@@ -1,0 +1,18 @@
+<!-- Link to template page -->
+{% extends "layout.html" %}
+
+<!-- Inserts this block of code into the body of the template -->
+{% block content %}
+    <h1>Quizzes</h1>
+    <h2>All Quizzes</h2>
+    {% for quiz in quizzes %}
+        <article class="quiz">
+            <h2><a href="{{ url_for('quiz', quiz_id=quiz.id) }}">{{ quiz.title }}</a></h2>
+            <p class="terms">{{ quiz_lengths[quizzes.index(quiz)] }} terms</p>
+            <div class="metadata">
+                <a href="#" class="textbook">{{ quiz.chapter.textbook.title }}</a>
+                <!-- <a href="#" class="chapter">{{ quiz.chapter.title }}</p> -->
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
