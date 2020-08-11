@@ -7,3 +7,7 @@ This project is a quiz-making application designed for anyone who wants to revis
 
 1. Uses the **Flask** framework to develop the back-end of the website.
 2. Uses **Bootstrap** for CSS styling.
+
+## Issues
+
+1. Flask and Jinja syntax does not work well with JS. Lots of syntax issues perhaps I should have used a **JS Framework** such as **React**.

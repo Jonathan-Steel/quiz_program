@@ -36,9 +36,9 @@
                     <li>
                         <a href="{{url_for('quizzes')}}">Quizzes</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{url_for('account')}}">Account</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="{{url_for('logout')}}">Logout</a>
                     </li>
@@ -54,6 +54,8 @@
         </nav>
         {% if not current_user.is_authenticated %}
             <a href="{{url_for('register')}}" class="cta"><button>Register</button></a>
+        {% else %}
+            <a href="{{url_for('account')}}" class="cta"><button>Account</button></a>
         {% endif %}
     </header>
 

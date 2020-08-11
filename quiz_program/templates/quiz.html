@@ -3,14 +3,53 @@
 
 <!-- Inserts this block of code into the body of the template -->
 {% block content %}
-    <script></script>
+    {% set card_no = 0 %}
+    <script>
+        let card_no = 0;
+        let cards = [];
+
+        {% for question in questions %}
+            cards.push(['{{ question.term }}', '{{ question.definition }}']);
+        {% endfor %}
+
+        console.table(cards);
+
+        function flip() {
+            if (document.getElementById("flashcard-term").innerHTML === cards[card_no][0]) {
+                document.getElementById("flashcard-term").innerHTML = cards[card_no][1];
+            } else {
+                document.getElementById("flashcard-term").innerHTML = cards[card_no][0];
+            }
+        }
+
+        function forward() {
+            if ((card_no + 1) !== cards.length) {
+                card_no += 1;
+                document.getElementById("flashcard-term").innerHTML = cards[card_no][0];
+                document.getElementById("progress").innerHTML = `${card_no + 1}/${cards.length}`;
+            }
+        }
+
+        function backward() {
+            if ((card_no) !== 0) {
+                card_no -= 1;
+                document.getElementById("flashcard-term").innerHTML = cards[card_no][0];
+                document.getElementById("progress").innerHTML = `${card_no + 1}/${cards.length}`;
+            }
+        }
+    </script>
     <article>
         <div class="metadata">
             <a href="#" class="textbook">{{ quiz.chapter.textbook.title }}</a>
         </div>
         <h1 id="quiz-title">{{ quiz.title }}</h1>
-        <div class="flashcard">
-            <h2>{{questions[2].term}}</h2>
+        <div class="flashcard" onclick="flip()">
+            <h2 id="flashcard-term">{{questions[0].term}}</h2>
+        </div>
+        <div class="flashcard-controls">
+            <button id="backward" onclick="backward()">⏪</button>
+            <p id="progress">1/{{questions_length}}</p>
+            <button id="forward" onclick="forward()">⏩</button>
         </div>
     </article>
 {% endblock content %}

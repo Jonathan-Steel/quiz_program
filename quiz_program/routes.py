@@ -193,4 +193,5 @@ def quizzes():
 def quiz(quiz_id):
     quiz = Quiz.query.get_or_404(quiz_id)
     questions = Question.query.filter_by(quiz_id=quiz_id)
-    return render_template('quiz.html', title=quiz.title, quiz=quiz, questions=questions)
+    questions_length = len(list(questions))
+    return render_template('quiz.html', title=quiz.title, quiz=quiz, questions=questions, questions_length=questions_length)
