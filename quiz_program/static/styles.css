@@ -67,7 +67,7 @@ button:hover {
 
 .jumbotron {
     height: 48rem;
-    background-image: url('/assets/jumbotron.jpg');
+    background-image: url("assets/jumbotron.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -337,6 +337,15 @@ small a {
 
 .flashcard-controls button {
     font-size: 1.5em;
+}
+
+/* Tips Div */
+.help {
+    width: 100%;
+    padding: 1em;
+    background-color: rgb(233, 233, 233);
+    color: black;
+    margin: 1em;
 }
 
 /* Footer */

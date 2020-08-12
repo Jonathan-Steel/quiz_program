@@ -3,16 +3,22 @@
 
 <!-- Inserts this block of code into the body of the template -->
 {% block content %}
-    <h1>Quizzes</h1>
-    <h2>All Quizzes</h2>
+    <h2>📚 Textbooks</h2>
+    <p>Please select your course textbook to find your quizzes.</p>
+    {% for textbook in textbooks %}
+        <article class="quiz">
+            <h2><a href="{{ url_for('textbook', textbook_id=textbook.id) }}">{{ textbook.title }}</a></h2>
+        </article>
+    {% endfor %}
+    <!-- <h2>❔ All Quizzes</h2>
     {% for quiz in quizzes %}
         <article class="quiz">
             <h2><a href="{{ url_for('quiz', quiz_id=quiz.id) }}">{{ quiz.title }}</a></h2>
             <p class="terms">{{ quiz_lengths[quizzes.index(quiz)] }} terms</p>
             <div class="metadata">
-                <a href="#" class="textbook">{{ quiz.chapter.textbook.title }}</a>
-                <!-- <a href="#" class="chapter">{{ quiz.chapter.title }}</p> -->
+                <a href="{{ url_for('textbook', textbook_id=textbook_ids[quizzes.index(quiz)]) }}" class="textbook">{{ quiz.chapter.textbook.title }}</a>
+                <a href="#" class="chapter">{{ quiz.chapter.title }}</p>
             </div>
         </article>
-    {% endfor %}
+    {% endfor %} -->
 {% endblock content %}

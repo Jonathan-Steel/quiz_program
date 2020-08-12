@@ -1,7 +1,43 @@
 <!-- Link to template page -->
 {% extends "layout.html" %}
 
+{% block jumbotron %}
+    <div class="jumbotron">
+        <h1>Revising is frustrating!</h1>
+    </div>
+
+    <div class="subotron">
+        <h2>But it doesn't have to be!</h2>
+    </div>
+{% endblock %}
+
 <!-- Inserts this block of code into the body of the template -->
 {% block content %}
-    <h1>Home</h1>
+    <section id="quote">
+        <article>
+            <blockquote><span>95%</span> of students report seeing higher marks after using Recuerda.</blockquote>
+        </article>
+    </section>
+
+    <section id="features">
+        <article>
+            <h2>Textbook Stuff</h2>
+            <p>All of our flashcards come from GCSE and A-Level textbooks</p>
+
+            <h2>Long Term Memory Development</h2>
+            <p>We can guarantee you will not forget the information come exam time as our smart algorithms develop long-term memory.</p>
+        </article>
+    </section>
+
+    <section id="register">
+        <article>
+            <h2 id="register">Ready to See Your Marks Skyrocket?</h2>
+            <br>
+            <div class="button-container">
+                <div class="button">
+                    <a href="{{ url_for('register') }}">Sign Up Now</a>
+                </div>
+            </div>
+        </article>
+    </section>
 {% endblock content %}

@@ -181,17 +181,35 @@ def account():
 @app.route("/quizzes")
 @login_required
 def quizzes():
+    textbooks = Textbook.query.all()
     quizzes = Quiz.query.all()
     quiz_lengths = []
+    textbook_ids = []
     for quiz in quizzes:
         quiz_lengths.append(len(list(quiz.questions)))
-    return render_template('quizzes.html', title='Quizzes', quizzes=quizzes, quiz_lengths=quiz_lengths)
+        textbook_ids.append(quiz.chapter.textbook.id)
+    return render_template('quizzes.html', title='Quizzes', quizzes=quizzes, quiz_lengths=quiz_lengths, textbook_ids=textbook_ids, textbooks=textbooks)
 
-# Quizzes Page
+# Quiz Page
 @app.route("/quiz/<int:quiz_id>")
 @login_required
 def quiz(quiz_id):
     quiz = Quiz.query.get_or_404(quiz_id)
     questions = Question.query.filter_by(quiz_id=quiz_id)
     questions_length = len(list(questions))
-    return render_template('quiz.html', title=quiz.title, quiz=quiz, questions=questions, questions_length=questions_length)
+    return render_template('quiz.html', title=quiz.title, quiz=quiz, questions=questions, questions_length=questions_length, textbook_id = quiz.chapter.textbook.id)
+
+# Textbook Page
+@app.route("/textbook/<int:textbook_id>")
+@login_required
+def textbook(textbook_id):
+    textbook = Textbook.query.get_or_404(textbook_id)
+    chapters = Chapter.query.filter_by(textbook_id=textbook_id)
+    chapters_length = len(list(chapters))
+    quizzes = []
+    for chapter in chapters:
+        quizzes += Quiz.query.filter_by(chapter_id=chapter.id)
+    quiz_lengths = []
+    for quiz in quizzes:
+        quiz_lengths.append(len(list(quiz.questions)))
+    return render_template('textbook.html', title=textbook.title, textbook=textbook, chapters=chapters, chapters_length=chapters_length, quizzes=quizzes, quiz_lengths=quiz_lengths)

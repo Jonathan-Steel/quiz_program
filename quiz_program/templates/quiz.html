@@ -15,10 +15,13 @@
         console.table(cards);
 
         function flip() {
+            document.getElementById("flashcard-help").style.display = "none";
             if (document.getElementById("flashcard-term").innerHTML === cards[card_no][0]) {
                 document.getElementById("flashcard-term").innerHTML = cards[card_no][1];
-            } else {
+            } else if (document.getElementById("flashcard-term").innerHTML === cards[card_no][1]) {
                 document.getElementById("flashcard-term").innerHTML = cards[card_no][0];
+            } else {
+                document.getElementById("flashcard-term").innerHTML = '✅';
             }
         }
 
@@ -27,6 +30,10 @@
                 card_no += 1;
                 document.getElementById("flashcard-term").innerHTML = cards[card_no][0];
                 document.getElementById("progress").innerHTML = `${card_no + 1}/${cards.length}`;
+            } else if ((card_no + 1) === cards.length) {
+                card_no += 1;
+                document.getElementById("flashcard-term").innerHTML = '✅';
+                document.getElementById("progress").innerHTML = '';
             }
         }
 
@@ -40,9 +47,12 @@
     </script>
     <article>
         <div class="metadata">
-            <a href="#" class="textbook">{{ quiz.chapter.textbook.title }}</a>
+            <a href="{{ url_for('textbook', textbook_id=textbook_id) }}" class="textbook">{{ quiz.chapter.textbook.title }}</a>
         </div>
         <h1 id="quiz-title">{{ quiz.title }}</h1>
+        <div class="help" id="flashcard-help">
+            <p><strong>💡 Tip</strong>: 👆 Click the flashcard to view the other side!</p>
+        </div>
         <div class="flashcard" onclick="flip()">
             <h2 id="flashcard-term">{{questions[0].term}}</h2>
         </div>
